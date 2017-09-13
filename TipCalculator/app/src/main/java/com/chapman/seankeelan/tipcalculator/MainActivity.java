@@ -2,12 +2,21 @@ package com.chapman.seankeelan.tipcalculator;
 
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.widget.EditText;
+import android.widget.TextView;
+import android.widget.RatingBar;
 
 public class MainActivity extends AppCompatActivity {
+
+    private TextView textView;
+    private RatingBar ratingBar;
+    private EditText editText;
 
     public float mealPrice;
     // public float tipAmount;
     public int score;
+
+    //TextView tv = (TextView) findViewById(R.id.textView);
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -15,11 +24,22 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
     }
 
-    class UnknownException extends Exception {}
+    private class UnknownException extends Exception {}
+
+    public int getScore() {
+        this.score = ratingBar.getNumStars();
+        return score;
+    }
+
+    public float getMealPrice() {
+        String strPrice = editText.getText().toString();
+        this.mealPrice = Float.parseFloat(strPrice);
+        return mealPrice;
+    }
 
     public double tipAmount()  {
-        mealPrice = this.mealPrice;
-        score = this.score;
+        // mealPrice = this.mealPrice;
+        // score = this.score;
         try {
             if (score == 0) {
                 return 0;
