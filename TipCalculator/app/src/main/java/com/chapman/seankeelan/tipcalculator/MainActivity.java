@@ -18,7 +18,7 @@ public class MainActivity extends AppCompatActivity {
 
     public double mealPrice;
     public double tip;
-    public int score;
+    public float score;
 
     //TextView tv = (TextView) findViewById(R.id.textView);
 
@@ -34,8 +34,8 @@ public class MainActivity extends AppCompatActivity {
 
     private class UnknownException extends Exception {}
 
-    public int getScore() {
-        this.score = ratingBar.getNumStars();
+    public float getScore() {
+        this.score = ratingBar.getRating();
         return score;
     }
 
@@ -45,22 +45,22 @@ public class MainActivity extends AppCompatActivity {
         return mealPrice;
     }
 
-    public double tip()  {
+    public double getTip()  {
         // mealPrice = this.mealPrice;
         // score = this.score;
         try {
-            if (score == 0) {
+            if (getScore() == 0) {
                 return 0;
-            } else if (score >= 1 && score <= 3) {
-                return mealPrice * 0.10;
-            } else if (score >= 4 && score <= 5) {
-                return mealPrice * 0.13;
-            } else if (score >= 6 && score <= 7) {
-                return mealPrice * 0.17;
-            } else if (score >= 8 && score <= 9) {
-                return mealPrice * 0.20;
-            } else if (score == 10) {
-                return mealPrice * 0.25;
+            } else if (getScore() >= 0.5 && getScore() <= 1.5) {
+                return getMealPrice() * 0.10;
+            } else if (getScore() >= 2 && getScore() <= 2.5) {
+                return getMealPrice() * 0.13;
+            } else if (getScore() >= 3 && getScore() <= 3.5) {
+                return getMealPrice() * 0.17;
+            } else if (getScore() >= 4 && getScore() <= 4.5) {
+                return getMealPrice() * 0.20;
+            } else if (getScore() == 5) {
+                return getMealPrice() * 0.25;
             }
             else {
                 throw new UnknownException();
@@ -73,8 +73,9 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void calcTip(View view) {
-        String finalAmount = Double.toString(tip());
-        tipAmount.setText("You should tip: " + finalAmount);
+        // String finalAmount = Double.toString(tip());
+        this.tip = Math.round(getTip() * 100.0) / 100.0;
+        tipAmount.setText("You should tip: $" + tip + ". Score: " + getScore());
     }
 
 }
