@@ -2,18 +2,22 @@ package com.chapman.seankeelan.tipcalculator;
 
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.text.Editable;
+import android.text.TextWatcher;
+import android.view.View;
 import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.RatingBar;
+import android.widget.Toast;
 
 public class MainActivity extends AppCompatActivity {
 
-    private TextView textView;
+    private TextView tipAmount;
     private RatingBar ratingBar;
     private EditText editText;
 
-    public float mealPrice;
-    // public float tipAmount;
+    public double mealPrice;
+    public double tip;
     public int score;
 
     //TextView tv = (TextView) findViewById(R.id.textView);
@@ -22,6 +26,10 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        this.tipAmount = (TextView) findViewById(R.id.tipAmount);
+        this.ratingBar = (RatingBar) findViewById(R.id.ratingBar);
+        this.editText = (EditText) findViewById(R.id.editText);
     }
 
     private class UnknownException extends Exception {}
@@ -31,13 +39,13 @@ public class MainActivity extends AppCompatActivity {
         return score;
     }
 
-    public float getMealPrice() {
+    public double getMealPrice() {
         String strPrice = editText.getText().toString();
-        this.mealPrice = Float.parseFloat(strPrice);
+        this.mealPrice = Double.parseDouble(strPrice);
         return mealPrice;
     }
 
-    public double tipAmount()  {
+    public double tip()  {
         // mealPrice = this.mealPrice;
         // score = this.score;
         try {
@@ -63,4 +71,10 @@ public class MainActivity extends AppCompatActivity {
             return 0;
         }
     }
+
+    public void calcTip(View view) {
+        String finalAmount = Double.toString(tip());
+        tipAmount.setText("You should tip: " + finalAmount);
+    }
+
 }
