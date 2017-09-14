@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:gravity="center"
+    android:orientation="vertical"
+    android:background="@drawable/finished_meal_background"
+    tools:context="com.chapman.seankeelan.tipcalculator.MainActivity">
+
+    <!-- The finished_meal_background is an image from historyhole.com,
+    with an opaque white layer on top. -->
+
+    <!-- The RatingBar widget consists of five stars, which can be
+    selected at half or full. The black and yellow colors were added
+    to colors.xml in the app/res/values directory to customize the stars
+    in both the selected and unselected phases. -->
+    <RatingBar
+        android:id="@+id/ratingBar"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="25dp"
+        android:progressBackgroundTint="@color/colorBlack"
+        android:progressTint="@color/colorYellow"/>
+
+    <!-- The EditText is the widget in which the user enters characters.
+    The input type is limited to decimal numbers. There is yet to be
+    a functionality that limits the number of digits that can be
+    entered.-->
+
+    <EditText
+        android:id="@+id/editText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:inputType="numberDecimal"
+        android:hint="Price of your meal"
+        android:textSize="30sp"/>
+
+    <!-- The Button widget calls the method calcTip() from
+    MainActivity.java. This calculates the tip amount based on the
+    RatingBar score and the price of the meal. -->
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:onClick="calcTip"
+        android:text="Calculate"
+        android:background="@android:color/holo_orange_light"
+        android:layout_margin="20dp"/>
+
+    <!-- The Textview widget displays the total tip amount. Digits
+    go up to two decimal places. If there is a 0 digit in the hundredths
+    place, it will not be displayed. This is NOT an intended function. -->
+    <TextView
+        android:id="@+id/tipAmount"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="25dp"
+        android:text="Your tip shows here"
+        android:textSize="30sp"
+        android:textColor="@android:color/holo_orange_dark"/>
+
+
+</LinearLayout>
